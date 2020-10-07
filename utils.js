@@ -28,14 +28,35 @@ const listNote = () => {
     }
 
     notes.forEach(note => {
+        printNote(note)
+    });
+}
+
+const printNote = (note) => {
         console.log(`${"-".repeat(15)}`);
         console.log("title: ",note.title);
         console.log("content: ",note.body);
         console.log(`${"-".repeat(15)} \n`);
+}
+
+const search = (title) => {
+    const notes = getNotes();
+
+    if (notes.length === 0) {
+        return console.log("The is no note(s) saved");
+    }
+
+    notes.forEach(note => {
+        if (note.title === title) {
+            return printNote(note);
+        }
     });
+
+    console.log("There is no note corresponding");
 }
 
 module.exports = {
     createNote,
-    listNote
+    listNote,
+    search
 };
