@@ -15,9 +15,27 @@ const getNotes = () => {
     }
 
     const buffer = fs.readFileSync("notes.json");
-    const data = JSON.parse(buffer.toString());
+    const data = [...JSON.parse(buffer.toString())];
 
     return data;
 }
 
-module.exports.createNote = createNote;
+const listNote = () => {
+    const notes = getNotes();
+
+    if (notes.length === 0) {
+        return console.log("\nThere is no note(s) saved\n")
+    }
+
+    notes.forEach(note => {
+        console.log(`${"-".repeat(15)}`);
+        console.log("title: ",note.title);
+        console.log("content: ",note.body);
+        console.log(`${"-".repeat(15)} \n`);
+    });
+}
+
+module.exports = {
+    createNote,
+    listNote
+};

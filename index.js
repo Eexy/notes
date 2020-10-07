@@ -22,4 +22,12 @@ yargs.command({
 	handler: (argv) => {
 		utils.createNote(argv.title, argv.body);
 	}
-}).argv;
+})
+    .command({
+        command: "list",
+        desc: "List all the notes",
+        handler: () => {
+            utils.listNote();
+        }
+    })
+    .argv;
